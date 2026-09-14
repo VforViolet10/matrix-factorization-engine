@@ -12,3 +12,9 @@ build/
 # Benchmark generated results
 benchmarks/results/*.csv
 benchmarks/results/*.png
+# Generated image compression experiment results
+applications/image_compression/results/*.csv
+applications/image_compression/results/*.png
+# Image compression experiment outputs
+applications/image_compression/results/*.csv
+applications/image_compression/results/*.png
