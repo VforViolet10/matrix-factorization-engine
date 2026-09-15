@@ -18,3 +18,6 @@ applications/image_compression/results/*.png
 # Image compression experiment outputs
 applications/image_compression/results/*.csv
 applications/image_compression/results/*.png
+# Recommendation system experiment results
+applications/recommendation_system/results/*.csv
+applications/recommendation_system/results/*.png
