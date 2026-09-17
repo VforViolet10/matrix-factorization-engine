@@ -21,3 +21,5 @@ applications/image_compression/results/*.png
 # Recommendation system experiment results
 applications/recommendation_system/results/*.csv
 applications/recommendation_system/results/*.png
+# MovieLens datasets
+data/movielens/
