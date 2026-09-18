@@ -28,6 +28,16 @@ jobs:
           pip install -r requirements.txt
           pip install pytest
 
+      - name: Prepare benchmark results directory
+        run: |
+          mkdir -p benchmarks/results
+
+      - name: Download MovieLens 100K
+        run: |
+          mkdir -p data/movielens
+          curl -L -o /tmp/ml-100k.zip https://files.grouplens.org/datasets/movielens/ml-100k.zip
+          unzip -q /tmp/ml-100k.zip -d data/movielens
+
       - name: Run tests
         env:
           PYTHONPATH: .
