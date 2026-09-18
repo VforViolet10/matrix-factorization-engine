@@ -11,4 +11,5 @@ __all__ = [
     "QR",
     "EigenvalueDecomposition",
     "LU",
+    "TensorFactorization",
 ]
