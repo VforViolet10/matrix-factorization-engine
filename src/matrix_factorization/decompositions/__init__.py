@@ -4,6 +4,8 @@ from .qr import QR
 from .eigen import EigenvalueDecomposition
 from .lu import LU
 from .tensor import TensorFactorization
+from .incremental_svd import IncrementalSVD
+from .robust_pca import RobustPCA
 
 __all__ = [
     "SVD",
@@ -12,4 +14,6 @@ __all__ = [
     "EigenvalueDecomposition",
     "LU",
     "TensorFactorization",
+    "IncrementalSVD",
+    "RobustPCA",
 ]
