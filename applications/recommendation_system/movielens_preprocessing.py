@@ -1,4 +1,3 @@
-```python
 import numpy as np
 import pandas as pd
 
@@ -166,4 +165,3 @@ def create_train_test_matrices(
         user_ids,
         item_ids,
     )
-```

@@ -1,4 +1,3 @@
-```python
 import numpy as np
 
 
@@ -81,10 +80,40 @@ def _get_top_k_items(
 def precision_at_k(
     predictions,
     train_ratings,
-    test_ratings,
+    test_ratings=None,
     k=5,
     relevance_threshold=4.0,
 ):
+    """
+    Calculate precision@k.
+
+    Supports both APIs:
+
+    New:
+        precision_at_k(
+            predictions,
+            train_ratings,
+            test_ratings,
+            k=5,
+        )
+
+    Legacy:
+        precision_at_k(
+            predictions,
+            test_ratings,
+            k=5,
+        )
+    """
+
+    predictions = np.asarray(predictions, dtype=float)
+    train_ratings = np.asarray(train_ratings, dtype=float)
+
+    legacy_api = test_ratings is None
+
+    if legacy_api:
+        test_ratings = train_ratings
+        train_ratings = np.zeros_like(test_ratings)
+
     predictions, train_ratings, test_ratings = _validate_inputs(
         predictions,
         train_ratings,
@@ -97,20 +126,30 @@ def precision_at_k(
     precisions = []
 
     for user_index in range(predictions.shape[0]):
-        top_k_items = _get_top_k_items(
-            predictions,
-            train_ratings,
-            user_index,
-            k,
-        )
+        if legacy_api:
+            ranked_items = np.argsort(
+                predictions[user_index]
+            )[::-1]
+
+            top_k_items = ranked_items[:k]
+        else:
+            top_k_items = _get_top_k_items(
+                predictions,
+                train_ratings,
+                user_index,
+                k,
+            )
 
         if len(top_k_items) == 0:
             continue
 
-        relevant = test_ratings[
-            user_index,
-            top_k_items,
-        ] >= relevance_threshold
+        relevant = (
+            test_ratings[
+                user_index,
+                top_k_items,
+            ]
+            >= relevance_threshold
+        )
 
         precisions.append(
             np.mean(relevant)
@@ -125,10 +164,40 @@ def precision_at_k(
 def recall_at_k(
     predictions,
     train_ratings,
-    test_ratings,
+    test_ratings=None,
     k=5,
     relevance_threshold=4.0,
 ):
+    """
+    Calculate recall@k.
+
+    Supports both APIs:
+
+    New:
+        recall_at_k(
+            predictions,
+            train_ratings,
+            test_ratings,
+            k=5,
+        )
+
+    Legacy:
+        recall_at_k(
+            predictions,
+            test_ratings,
+            k=5,
+        )
+    """
+
+    predictions = np.asarray(predictions, dtype=float)
+    train_ratings = np.asarray(train_ratings, dtype=float)
+
+    legacy_api = test_ratings is None
+
+    if legacy_api:
+        test_ratings = train_ratings
+        train_ratings = np.zeros_like(test_ratings)
+
     predictions, train_ratings, test_ratings = _validate_inputs(
         predictions,
         train_ratings,
@@ -142,25 +211,31 @@ def recall_at_k(
 
     for user_index in range(predictions.shape[0]):
         relevant_items = np.where(
-            (
-                test_ratings[user_index]
-                >= relevance_threshold
-            )
-            & (
-                train_ratings[user_index]
-                == 0
-            )
+            test_ratings[user_index]
+            >= relevance_threshold
         )[0]
+
+        if not legacy_api:
+            relevant_items = relevant_items[
+                train_ratings[user_index, relevant_items] == 0
+            ]
 
         if len(relevant_items) == 0:
             continue
 
-        top_k_items = _get_top_k_items(
-            predictions,
-            train_ratings,
-            user_index,
-            k,
-        )
+        if legacy_api:
+            ranked_items = np.argsort(
+                predictions[user_index]
+            )[::-1]
+
+            top_k_items = ranked_items[:k]
+        else:
+            top_k_items = _get_top_k_items(
+                predictions,
+                train_ratings,
+                user_index,
+                k,
+            )
 
         hits = np.intersect1d(
             top_k_items,
@@ -175,7 +250,6 @@ def recall_at_k(
         return 0.0
 
     return float(np.mean(recalls))
-
 
 def ndcg_at_k(
     predictions,
@@ -263,4 +337,3 @@ def ndcg_at_k(
         return 0.0
 
     return float(np.mean(ndcg_scores))
-```

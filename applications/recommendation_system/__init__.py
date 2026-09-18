@@ -1,4 +1,3 @@
-```python
 from .als_factorization import ALSMatrixFactorization
 from .dataset import (
     create_rating_matrix,
@@ -33,4 +32,3 @@ __all__ = [
     "MaskedMatrixFactorization",
     "ALSMatrixFactorization",
 ]
-```
