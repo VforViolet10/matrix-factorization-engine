@@ -1,36 +1,23 @@
-from .als_factorization import (
-    ALSMatrixFactorization,
-)
-from .masked_factorization import (
-    MaskedMatrixFactorization,
-)
-from .evaluation import rmse_on_observed_ratings
-from .recommender import MatrixFactorizationRecommender
-
+```python
+from .als_factorization import ALSMatrixFactorization
 from .dataset import (
     create_rating_matrix,
     get_item_names,
     get_user_names,
 )
-
-from .preprocessing import (
-    train_test_split_ratings,
-    fill_missing_with_item_mean,
-)
-
 from .evaluation import (
-    rmse_on_observed_ratings,
+    ndcg_at_k,
     precision_at_k,
     recall_at_k,
+    rmse_on_observed_ratings,
 )
+from .masked_factorization import MaskedMatrixFactorization
+from .preprocessing import (
+    fill_missing_with_item_mean,
+    train_test_split_ratings,
+)
+from .recommender import MatrixFactorizationRecommender
 
-from .masked_factorization import (
-    MaskedMatrixFactorization,
-)
-
-from .als_factorization import (
-    ALSMatrixFactorization,
-)
 
 __all__ = [
     "MatrixFactorizationRecommender",
@@ -42,6 +29,8 @@ __all__ = [
     "rmse_on_observed_ratings",
     "precision_at_k",
     "recall_at_k",
+    "ndcg_at_k",
     "MaskedMatrixFactorization",
     "ALSMatrixFactorization",
 ]
+```
