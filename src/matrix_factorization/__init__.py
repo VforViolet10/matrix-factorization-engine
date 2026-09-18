@@ -1,8 +1,12 @@
 """
-Matrix Factorization Engine
+Matrix Factorization Engine.
 
-A research-oriented Python library for matrix and tensor
-factorization algorithms and their applications.
+A Python toolkit for matrix factorization, decomposition,
+reconstruction, and related linear algebra applications.
 """
 
-__version__ = "0.1.0"
+from .engine import MatrixFactorizationEngine
+
+__all__ = [
+    "MatrixFactorizationEngine",
+]
