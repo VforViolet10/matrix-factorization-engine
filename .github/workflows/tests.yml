@@ -1,11 +1,6 @@
-```yaml
 name: Tests
 
-on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
+"on": push
 
 jobs:
   test:
@@ -28,4 +23,3 @@ jobs:
 
       - name: Run tests
         run: python -m pytest -q
-```
