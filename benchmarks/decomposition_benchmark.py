@@ -63,6 +63,30 @@ def generate_benchmark_matrix(size, seed=42):
 
     return rng.random((size, size)) + 0.1
 
+def create_algorithms(size):
+    """
+    Create the standard decomposition objects.
+
+    Kept compatible with the existing benchmark test suite.
+    """
+
+    components = min(
+        N_COMPONENTS,
+        size,
+    )
+
+    return {
+        "SVD": SVD(
+            n_components=components,
+        ),
+        "NMF": NMF(
+            n_components=components,
+            max_iter=NMF_MAX_ITER,
+            random_state=42,
+        ),
+        "QR": QR(),
+        "LU": LU(),
+    }
 
 # =========================================================
 # Timing and memory measurement
