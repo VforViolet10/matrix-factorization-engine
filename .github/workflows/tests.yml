@@ -22,4 +22,4 @@ jobs:
           pip install pytest
 
       - name: Run tests
-        run: python -m pytest -y
+        run: python -m pytest -v
