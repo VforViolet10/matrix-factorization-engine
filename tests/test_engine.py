@@ -39,6 +39,29 @@ def test_svd_engine():
     assert engine.get_model() is engine.model
 
 
+def test_nmf_engine():
+    X = np.array([
+        [1.0, 2.0],
+        [3.0, 4.0],
+        [5.0, 6.0],
+    ])
+
+    engine = MatrixFactorizationEngine(
+        method="nmf",
+        n_components=2,
+        random_state=42,
+    )
+
+    result = engine.fit(X)
+
+    assert result is engine
+
+    reconstructed = engine.reconstruct()
+
+    assert reconstructed.shape == X.shape
+    assert np.all(np.isfinite(reconstructed))
+    assert np.all(reconstructed >= 0)
+
 def test_incremental_svd_engine():
     X_initial = np.array([
         [1.0, 2.0],
@@ -162,3 +185,54 @@ def test_invalid_matrix():
 
     with pytest.raises(ValueError):
         engine.fit(np.array([1.0, 2.0, 3.0]))
+
+def test_empty_matrix():
+    engine = MatrixFactorizationEngine(method="svd")
+
+    with pytest.raises(ValueError):
+        engine.fit(np.empty((0, 0)))
+
+
+def test_non_finite_matrix():
+    engine = MatrixFactorizationEngine(method="svd")
+
+    X = np.array([
+        [1.0, 2.0],
+        [np.nan, 4.0],
+    ])
+
+    with pytest.raises(ValueError):
+        engine.fit(X)
+
+
+def test_transform_before_fit():
+    engine = MatrixFactorizationEngine(
+        method="svd",
+        n_components=1,
+    )
+
+    X = np.array([
+        [1.0, 2.0],
+        [3.0, 4.0],
+    ])
+
+    with pytest.raises(RuntimeError):
+        engine.transform(X)
+
+
+def test_partial_fit_input_validation():
+    engine = MatrixFactorizationEngine(
+        method="incremental_svd",
+        n_components=1,
+    )
+
+    with pytest.raises(ValueError):
+        engine.partial_fit(
+            np.array([1.0, 2.0])
+        )
+
+
+def test_tensor_engine_is_not_available():
+    methods = MatrixFactorizationEngine.available_methods()
+
+    assert "tensor" not in methods

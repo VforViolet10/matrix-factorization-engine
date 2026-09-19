@@ -1,56 +1,78 @@
 # Matrix Factorization Engine
 
-A research-oriented Python engine for implementing,
-analyzing, and benchmarking matrix and tensor
-factorization techniques.
+A research-oriented Python engine for implementing, comparing,
+and benchmarking matrix and tensor factorization techniques.
 
-## Project Objective
+The project combines classical linear algebra decompositions,
+advanced matrix factorization methods, tensor decomposition,
+real-world applications, and quantitative performance analysis.
 
-The project implements classical and advanced
-linear algebra decomposition techniques and connects
-them with real-world machine learning applications.
+---
+
+## Project Overview
+
+The Matrix Factorization Engine provides a unified framework for
+experimenting with different factorization techniques and studying
+their:
+
+- Reconstruction accuracy
+- Approximation quality
+- Computational runtime
+- Memory consumption
+- Scalability
+- Convergence behavior
+- Low-rank representations
+
+The project is designed for both educational experimentation and
+research-oriented benchmarking.
+
+---
 
 ## Algorithms
 
-### Classical
-- Singular Value Decomposition (SVD)
-- QR Factorization
-- Eigenvalue Decomposition
-- LU Decomposition
+### Classical Matrix Decompositions
 
-### Advanced
-- Non-negative Matrix Factorization (NMF)
-- Tensor Factorization
-- Incremental SVD
-- Robust PCA
+| Algorithm | Description |
+|---|---|
+| SVD | Singular Value Decomposition |
+| QR | QR Factorization |
+| Eigen | Eigenvalue Decomposition |
+| LU | LU Decomposition |
 
-## Applications
+### Advanced Factorization Methods
 
-- Image Compression
-- Recommendation Systems
-- Latent Semantic Analysis
-- Anomaly Detection
+| Algorithm | Description |
+|---|---|
+| NMF | Non-negative Matrix Factorization |
+| Incremental SVD | Incremental / streaming low-rank factorization |
+| Robust PCA | Low-rank + sparse decomposition |
+| Tensor Factorization | CP/PARAFAC decomposition using ALS |
 
-## Technology
+---
 
-- Python
-- NumPy
-- SciPy
-- Scikit-learn
-- Matplotlib
-- Pytest
+## Unified API
 
-## Research Focus
+The project provides a common interface for supported
+matrix factorization methods.
 
-The project evaluates:
+```python
+import numpy as np
 
-- Reconstruction accuracy
-- Computational efficiency
-- Memory usage
-- Scalability
-- Convergence
-- Approximation quality
+from matrix_factorization import MatrixFactorizationEngine
 
-## Status
+X = np.array([
+    [5.0, 3.0, 1.0],
+    [4.0, 2.0, 5.0],
+    [1.0, 5.0, 4.0],
+])
 
-🚧 Project under development
+engine = MatrixFactorizationEngine(
+    method="svd",
+    n_components=2,
+)
+
+engine.fit(X)
+
+reconstructed = engine.reconstruct()
+
+print(reconstructed)

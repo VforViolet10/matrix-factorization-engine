@@ -23,3 +23,7 @@ applications/recommendation_system/results/*.csv
 applications/recommendation_system/results/*.png
 # MovieLens datasets
 data/movielens/
+# Scalability experiment generated results
+benchmarks/scalability/results/*.csv
+benchmarks/scalability/results/*.png
+benchmarks/scalability/plots/*.png
