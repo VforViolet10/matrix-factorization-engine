@@ -42,19 +42,18 @@ jobs:
 
       - name: Generate scalability benchmark results
         env:
-          PYTHONPATH: .
+          PYTHONPATH: .:src
         run: |
           python benchmarks/scalability/scalability_experiment.py
 
       - name: Generate scalability report
         env:
-          PYTHONPATH: .
+          PYTHONPATH: .:src
         run: |
           python benchmarks/scalability/scaling_report.py
 
       - name: Run tests
         env:
-          PYTHONPATH: .
+          PYTHONPATH: .:src
         run: |
           pytest -q
-
