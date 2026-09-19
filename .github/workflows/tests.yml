@@ -30,6 +30,7 @@ jobs:
 
       - name: Prepare benchmark results directory
         run: |
+          mkdir -p benchmarks/results
           mkdir -p benchmarks/scalability/results
           mkdir -p benchmarks/accuracy/results
           mkdir -p benchmarks/plots
