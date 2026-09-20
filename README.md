@@ -1,19 +1,5 @@
 # Matrix Factorization Engine
 
-<p align="center">
-
-**A research-oriented matrix factorization platform combining linear algebra, machine learning, real-world applications, benchmarking, and an interactive web interface.**
-
-[![Python](https://img.shields.io/badge/Python-3.10+-3776AB?logo=python\&logoColor=white)](https://www.python.org/)
-[![FastAPI](https://img.shields.io/badge/FastAPI-API-009688?logo=fastapi\&logoColor=white)](https://fastapi.tiangolo.com/)
-[![Next.js](https://img.shields.io/badge/Next.js-Frontend-000000?logo=next.js\&logoColor=white)](https://nextjs.org/)
-[![Tests](https://img.shields.io/badge/Tests-189%20passed-brightgreen)](#testing)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-
-</p>
-
-<p align="center">
-
 ### 🚀 [Interactive Web Application](https://matrix-factorization-engine-601x8yb4s-violet26.vercel.app/)
 
 ### 📚 [API Documentation](https://matrix-factorization-engine-1.onrender.com/docs)
