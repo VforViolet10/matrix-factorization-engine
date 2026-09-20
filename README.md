@@ -2,6 +2,18 @@
 
 <p align="center">
 
+**A research-oriented matrix factorization platform combining linear algebra, machine learning, real-world applications, benchmarking, and an interactive web interface.**
+
+[![Python](https://img.shields.io/badge/Python-3.10+-3776AB?logo=python\&logoColor=white)](https://www.python.org/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-API-009688?logo=fastapi\&logoColor=white)](https://fastapi.tiangolo.com/)
+[![Next.js](https://img.shields.io/badge/Next.js-Frontend-000000?logo=next.js\&logoColor=white)](https://nextjs.org/)
+[![Tests](https://img.shields.io/badge/Tests-189%20passed-brightgreen)](#testing)
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
+</p>
+
+<p align="center">
+
 ### 🚀 [Interactive Web Application](https://matrix-factorization-engine-601x8yb4s-violet26.vercel.app/)
 
 ### 📚 [API Documentation](https://matrix-factorization-engine-1.onrender.com/docs)
@@ -10,100 +22,85 @@
 
 ---
 
-## Overview
+## 📌 Overview
 
-**Matrix Factorization Engine** is a research-oriented Python framework and interactive web platform for implementing, comparing, and applying matrix and tensor factorization techniques.
+**Matrix Factorization Engine** is a research-oriented Python framework and full-stack web platform for implementing, analyzing, comparing, and applying matrix and tensor factorization techniques.
 
-The project combines:
+The project combines mathematical algorithms with practical applications in:
 
-* Classical linear algebra decompositions
-* Advanced matrix factorization algorithms
-* Tensor factorization
-* Low-rank approximation
-* Image compression
+* Linear algebra
+* Numerical computing
+* Machine learning
 * Recommendation systems
-* Recommendation evaluation
+* Image compression
+* Dimensionality reduction
 * Performance benchmarking
-* A REST API built with FastAPI
-* An interactive Next.js frontend
 
-The goal is to provide a unified environment for studying how different factorization techniques behave in terms of reconstruction, approximation quality, computational performance, and real-world applications.
-
----
-
-## 🌐 Live Application
-
-### Interactive Web Platform
-
-**Frontend:**
-https://matrix-factorization-engine-601x8yb4s-violet26.vercel.app/
-
-The web application provides four interactive modules:
-
-1. **Factorization**
-2. **Recommendation System**
-3. **Image Compression**
-4. **Recommendation Evaluation**
-
-### Backend API
-
-**FastAPI Backend:**
-https://matrix-factorization-engine-1.onrender.com/
-
-**Interactive API Documentation:**
-https://matrix-factorization-engine-1.onrender.com/docs
-
-The frontend communicates with the deployed FastAPI backend through REST endpoints.
+The platform provides both a **Python-based computational engine** and an **interactive web application** powered by FastAPI and Next.js.
 
 ---
 
 ## ✨ Features
 
-### Matrix Factorization
+### 🧮 Matrix & Tensor Factorization
 
-The engine supports multiple decomposition and factorization techniques through a unified interface.
+The engine implements multiple factorization and decomposition techniques through a unified architecture.
 
-### Real-World Applications
+### 🎬 Recommendation System
 
-The project demonstrates factorization techniques through practical applications:
+A matrix-factorization-based recommendation application supporting:
 
-* Image compression using low-rank SVD
-* Collaborative-filtering-style recommendation systems
-* Recommendation prediction evaluation
-* Dimensionality reduction
-* Low-rank approximation
+* SVD
+* NMF
+* Configurable latent components
+* User selection
+* Predicted ratings
+* Top-K recommendations
 
-### Benchmarking
+### 🖼️ Image Compression
 
-The project includes experiments for analyzing:
+Low-rank SVD is used to compress images while measuring:
 
+* Compression ratio
 * Reconstruction error
 * Relative reconstruction error
+* RMSE
+
+### 📊 Recommendation Evaluation
+
+The platform evaluates recommendation predictions using:
+
+* RMSE
+* Precision@K
+* Recall@K
+* NDCG@K
+
+### ⚡ Benchmarking & Scalability
+
+Experiments measure:
+
 * Runtime
 * Memory usage
-* Compression ratio
-* Scalability
-* Approximation quality
+* Reconstruction quality
+* Compression efficiency
+* Scalability across matrix sizes
 
-### Interactive Web Interface
+### 🌐 Interactive Web Platform
 
-The Next.js frontend allows users to interact with the engine without writing Python code.
+The Next.js frontend provides four main modules:
 
-Users can:
+1. **Factorization**
+2. **Recommendations**
+3. **Image Compression**
+4. **Evaluation**
 
-* Enter custom matrices
-* Select factorization algorithms
-* Configure the number of components
-* Generate recommendations
-* Upload images for compression
-* Evaluate recommendation predictions
-* Inspect numerical results
+Users can interact with the engine without writing Python code.
 
 ---
 
 # 🧮 Algorithms
 
-## Classical Matrix Decompositions
+## Classical Decompositions
 
 | Algorithm | Description                  |
 | --------- | ---------------------------- |
@@ -112,60 +109,60 @@ Users can:
 | **LU**    | LU Decomposition             |
 | **Eigen** | Eigenvalue Decomposition     |
 
-## Advanced Factorization Methods
+## Advanced Methods
 
-| Algorithm                | Description                                    |
-| ------------------------ | ---------------------------------------------- |
-| **NMF**                  | Non-negative Matrix Factorization              |
-| **Incremental SVD**      | Incremental / streaming low-rank factorization |
-| **Robust PCA**           | Low-rank + sparse decomposition                |
-| **Tensor Factorization** | CP/PARAFAC decomposition using ALS             |
+| Algorithm                | Description                        |
+| ------------------------ | ---------------------------------- |
+| **NMF**                  | Non-negative Matrix Factorization  |
+| **Incremental SVD**      | Incremental low-rank factorization |
+| **Robust PCA**           | Low-rank and sparse decomposition  |
+| **Tensor Factorization** | CP/PARAFAC decomposition using ALS |
 
 ---
 
-# 🏗️ System Architecture
+# 🏗️ Architecture
 
 ```text
-                         ┌─────────────────────────────┐
-                         │       Next.js Frontend      │
-                         │          Vercel             │
-                         │                             │
-                         │  • Factorization            │
-                         │  • Recommendations          │
-                         │  • Image Compression        │
-                         │  • Evaluation               │
-                         └──────────────┬──────────────┘
+                         ┌──────────────────────────────┐
+                         │       Next.js Frontend       │
+                         │            Vercel            │
+                         │                              │
+                         │  Factorization               │
+                         │  Recommendations             │
+                         │  Image Compression           │
+                         │  Evaluation                  │
+                         └──────────────┬───────────────┘
                                         │
                                         │ REST API
                                         ▼
-                         ┌─────────────────────────────┐
-                         │       FastAPI Backend       │
-                         │           Render            │
-                         │                             │
-                         │  /factorize                 │
-                         │  /methods                   │
-                         │  /applications/...          │
-                         └──────────────┬──────────────┘
+                         ┌──────────────────────────────┐
+                         │       FastAPI Backend        │
+                         │            Render             │
+                         │                              │
+                         │  /methods                    │
+                         │  /factorize                  │
+                         │  /applications/...           │
+                         └──────────────┬───────────────┘
                                         │
                                         ▼
-                         ┌─────────────────────────────┐
-                         │   Matrix Factorization      │
-                         │          Engine             │
-                         │                             │
-                         │  SVD • NMF • QR • LU        │
-                         │  Eigen • Incremental SVD    │
-                         │  Robust PCA • Tensor ALS    │
-                         └──────────────┬──────────────┘
+                         ┌──────────────────────────────┐
+                         │   Matrix Factorization       │
+                         │          Engine               │
+                         │                              │
+                         │ SVD • NMF • QR • LU          │
+                         │ Eigen • Incremental SVD      │
+                         │ Robust PCA • Tensor ALS      │
+                         └──────────────┬───────────────┘
                                         │
                                         ▼
-                         ┌─────────────────────────────┐
-                         │      Applications           │
-                         │                             │
-                         │  Image Compression          │
-                         │  Recommendation Systems     │
-                         │  Evaluation                 │
-                         │  Benchmarking               │
-                         └─────────────────────────────┘
+                         ┌──────────────────────────────┐
+                         │        Applications          │
+                         │                              │
+                         │ Image Compression            │
+                         │ Recommendation Systems       │
+                         │ Recommendation Evaluation    │
+                         │ Benchmarking                 │
+                         └──────────────────────────────┘
 ```
 
 ---
@@ -178,6 +175,10 @@ matrix-factorization-engine/
 ├── .github/
 │   └── workflows/
 │       └── tests.yml
+│
+├── api/
+│   ├── main.py
+│   └── routes/
 │
 ├── applications/
 │   ├── image_compression/
@@ -214,10 +215,6 @@ matrix-factorization-engine/
 │
 ├── tests/
 │
-├── api/
-│   ├── main.py
-│   └── routes/
-│
 ├── requirements.txt
 ├── setup.py
 ├── pytest.ini
@@ -231,7 +228,7 @@ matrix-factorization-engine/
 
 ---
 
-# 🔌 API
+# 🔌 REST API
 
 The FastAPI backend exposes the following endpoints:
 
@@ -245,48 +242,17 @@ The FastAPI backend exposes the following endpoints:
 | `POST` | `/applications/recommendations/evaluate` | Evaluate predictions            |
 | `POST` | `/applications/image-compression`        | Compress an uploaded image      |
 
-### API Documentation
-
-Interactive Swagger documentation:
-
-https://matrix-factorization-engine-1.onrender.com/docs
-
----
-
-# 💡 Example: Using the Python Engine
-
-```python
-import numpy as np
-
-from matrix_factorization import MatrixFactorizationEngine
-
-X = np.array([
-    [5.0, 3.0, 1.0],
-    [4.0, 2.0, 5.0],
-    [1.0, 5.0, 4.0],
-])
-
-engine = MatrixFactorizationEngine(
-    method="svd",
-    n_components=2,
-)
-
-engine.fit(X)
-
-reconstructed = engine.reconstruct()
-
-print(reconstructed)
-```
+Interactive Swagger documentation is available through the **API Documentation** link at the top of this README.
 
 ---
 
 # 🖼️ Image Compression
 
-The image compression application uses low-rank SVD to approximate an image using a reduced number of singular components.
+The image compression application uses low-rank SVD to approximate images using a reduced number of singular components.
 
-The application reports:
+It reports:
 
-* Original dimensions
+* Original image dimensions
 * Compressed dimensions
 * Number of components
 * Compression ratio
@@ -294,7 +260,7 @@ The application reports:
 * Relative reconstruction error
 * RMSE
 
-Example experimental results:
+### Example Results
 
 | Components | Compression Ratio | Relative Error |
 | ---------: | ----------------: | -------------: |
@@ -304,24 +270,24 @@ Example experimental results:
 |         40 |             2.99× |       0.004432 |
 |         80 |             1.50× |       0.004412 |
 
-These results demonstrate the trade-off between compression and reconstruction quality.
+These experiments demonstrate the trade-off between the number of retained components, compression ratio, and reconstruction quality.
 
 ---
 
 # 🎬 Recommendation System
 
-The recommendation application demonstrates matrix factorization on a movie-rating matrix.
+The recommendation application demonstrates collaborative filtering using a movie-rating matrix.
 
 The system supports:
 
 * SVD-based recommendations
 * NMF-based recommendations
-* Configurable latent components
+* Configurable latent dimensions
 * User selection
 * Configurable recommendation count
 * Predicted ratings
 
-Example movie dataset:
+Example dataset:
 
 ```text
 Inception
@@ -338,27 +304,27 @@ Gladiator
 
 # 📊 Recommendation Evaluation
 
-The evaluation module uses a held-out test dataset to measure recommendation quality.
+The evaluation module uses a held-out test dataset to evaluate recommendation predictions.
 
-Metrics include:
+### Metrics
 
-### RMSE
+**RMSE**
 
-Measures prediction error between predicted and actual ratings.
+Measures the difference between predicted and actual ratings.
 
-### Precision@K
+**Precision@K**
 
-Measures how many of the top-K recommendations are relevant.
+Measures the proportion of recommended items within the top-K results that are relevant.
 
-### Recall@K
+**Recall@K**
 
-Measures how many relevant items are retrieved within the top-K recommendations.
+Measures the proportion of relevant items retrieved within the top-K results.
 
-### NDCG@K
+**NDCG@K**
 
-Measures ranking quality while giving greater importance to higher-ranked relevant recommendations.
+Measures ranking quality while giving greater importance to relevant items appearing higher in the recommendation list.
 
-The evaluation interface allows users to configure:
+The interface allows users to configure:
 
 * K
 * Relevance threshold
@@ -370,23 +336,24 @@ The evaluation interface allows users to configure:
 
 # 📈 Benchmarking
 
-The project includes benchmarking experiments for studying algorithmic performance across different matrix sizes and configurations.
+The project contains experiments for analyzing algorithm performance across different matrix sizes and configurations.
 
-Benchmark dimensions include:
+Benchmarking focuses on:
 
-* Runtime
+* Execution time
 * Memory consumption
 * Reconstruction error
+* Relative reconstruction error
+* Compression ratio
 * Scalability
-* Compression efficiency
 
-This allows different factorization approaches to be compared quantitatively rather than only theoretically.
+The benchmark infrastructure allows factorization methods to be evaluated quantitatively across different workloads.
 
 ---
 
 # 🧪 Testing
 
-The project has an automated test suite covering the mathematical engine, applications, API, and supporting functionality.
+The project includes an automated test suite covering the mathematical engine, applications, metrics, and API functionality.
 
 Current test status:
 
@@ -395,7 +362,7 @@ Current test status:
 2 warnings
 ```
 
-Run the test suite with:
+Run the tests with:
 
 ```bash
 pytest
@@ -403,27 +370,21 @@ pytest
 
 ---
 
-# 🚀 Running Locally
+# 🚀 Getting Started
 
-## 1. Clone the repository
+## Clone the Repository
 
 ```bash
 git clone https://github.com/VforViolet10/matrix-factorization-engine.git
-
 cd matrix-factorization-engine
 ```
 
-## 2. Create a virtual environment
+## Create a Virtual Environment
 
 ### Windows
 
 ```bash
 python -m venv venv
-```
-
-Activate it:
-
-```bash
 source venv/Scripts/activate
 ```
 
@@ -434,104 +395,86 @@ python3 -m venv venv
 source venv/bin/activate
 ```
 
-## 3. Install dependencies
+## Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 pip install .
 ```
 
-## 4. Run tests
+## Run Tests
 
 ```bash
 pytest
 ```
 
-## 5. Run the API
+## Run the API
 
 ```bash
 uvicorn api.main:app --reload
 ```
 
-The API will be available at:
+The API will be available locally at:
 
 ```text
 http://127.0.0.1:8000
 ```
 
-Swagger documentation:
-
-```text
-http://127.0.0.1:8000/docs
-```
-
 ---
 
-# 💻 Running the Frontend
+# 💻 Frontend Development
 
-Move into the frontend directory:
+The frontend is located in the `frontend/` directory.
 
 ```bash
 cd frontend
-```
-
-Install dependencies:
-
-```bash
 npm install
-```
-
-Create `.env.local`:
-
-```env
-NEXT_PUBLIC_API_URL=http://127.0.0.1:8000
-```
-
-Start the development server:
-
-```bash
 npm run dev
 ```
 
-The frontend will be available at:
+The development application will be available at:
 
 ```text
 http://localhost:3000
 ```
 
+For local backend development, configure:
+
+```env
+NEXT_PUBLIC_API_URL=http://127.0.0.1:8000
+```
+
+For the deployed application, the frontend connects to the deployed FastAPI backend.
+
 ---
 
 # ☁️ Deployment
 
-The project uses a separated frontend/backend deployment architecture.
+The application uses a separated frontend/backend architecture:
 
-### Frontend
-
-**Platform:** Vercel
-
-https://matrix-factorization-engine-601x8yb4s-violet26.vercel.app/
-
-### Backend
-
-**Platform:** Render
-
-https://matrix-factorization-engine-1.onrender.com/
-
-### API Documentation
-
-https://matrix-factorization-engine-1.onrender.com/docs
-
-The frontend communicates with the backend through:
-
-```env
-NEXT_PUBLIC_API_URL=https://matrix-factorization-engine-1.onrender.com
+```text
+Frontend
+   │
+   │ Vercel
+   ▼
+Next.js Application
+   │
+   │ REST API
+   ▼
+FastAPI Backend
+   │
+   │ Render
+   ▼
+Matrix Factorization Engine
 ```
+
+The deployed frontend and API documentation are linked at the top of this README.
 
 ---
 
 # 🛠️ Technology Stack
 
-## Backend / Engine
+### Backend & Mathematical Engine
 
 * Python
 * NumPy
@@ -543,24 +486,26 @@ NEXT_PUBLIC_API_URL=https://matrix-factorization-engine-1.onrender.com
 * Uvicorn
 * Pytest
 
-## Frontend
+### Frontend
 
 * Next.js
 * React
 * TypeScript
 * Tailwind CSS
 
-## Deployment
+### Development & Deployment
 
+* Git
+* GitHub
+* GitHub Actions
 * Vercel
 * Render
-* GitHub Actions
 
 ---
 
 # 🎯 Project Objectives
 
-The project was developed to explore the intersection of:
+The project explores the intersection of:
 
 * Linear Algebra
 * Matrix Factorization
@@ -573,36 +518,41 @@ The project was developed to explore the intersection of:
 * REST API Development
 * Full-Stack Data Applications
 
+The main objective is to connect the mathematical foundations of matrix factorization with practical, measurable applications.
+
 ---
 
 # 🔬 Research & Engineering Focus
 
-The engine is designed around several measurable properties of factorization algorithms:
+The engine is designed around evaluating factorization methods using multiple dimensions:
 
 ```text
-                    Matrix / Tensor
-                          │
-                          ▼
-                  Factorization
-                          │
-            ┌─────────────┼─────────────┐
-            ▼             ▼             ▼
-       Accuracy        Runtime       Memory
-            │             │             │
-            └─────────────┼─────────────┘
-                          ▼
-                    Applications
-                          │
-             ┌────────────┼────────────┐
-             ▼            ▼            ▼
-       Compression   Recommendations   ML
+                         Matrix / Tensor
+                                │
+                                ▼
+                         Factorization
+                                │
+                ┌───────────────┼───────────────┐
+                ▼               ▼               ▼
+             Accuracy         Runtime         Memory
+                │               │               │
+                └───────────────┼───────────────┘
+                                ▼
+                          Reconstruction
+                                │
+                                ▼
+                           Applications
+                                │
+                ┌───────────────┼───────────────┐
+                ▼               ▼               ▼
+           Compression   Recommendations   Machine Learning
 ```
 
-This makes the project suitable for experimentation with both mathematical properties and practical machine-learning applications.
+This provides a foundation for studying both the mathematical behavior and practical performance of factorization algorithms.
 
 ---
 
-# 📌 Future Extensions
+# 🔮 Future Extensions
 
 Potential future work includes:
 
@@ -610,10 +560,10 @@ Potential future work includes:
 * Distributed factorization
 * Larger recommendation datasets
 * Interactive benchmark visualization
-* Tensor-factorization web demonstrations
-* Additional dimensionality-reduction techniques
+* Tensor-factorization demonstrations
+* Additional dimensionality-reduction methods
 * Experiment tracking
-* More advanced model comparison
+* Advanced model comparison
 * Persistent experiment results
 
 ---
@@ -624,8 +574,7 @@ Potential future work includes:
 
 Data Science • AI/ML • Linear Algebra • Technology
 
-GitHub:
-https://github.com/VforViolet10
+GitHub: [VforViolet10](https://github.com/VforViolet10)
 
 ---
 
