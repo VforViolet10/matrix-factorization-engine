@@ -8,3 +8,4 @@ pandas
 fastapi>=0.141,<1.0
 uvicorn[standard]>=0.35
 httpx>=0.28,<1.0
+python-multipart>=0.0.20
