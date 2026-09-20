@@ -21,6 +21,9 @@ class FactorizationRequest(BaseModel):
 
 class FactorizationResponse(BaseModel):
     method: str
+    matrix_shape: List[int]
+    n_components: int | None = None
     input_matrix: List[List[float]]
     reconstructed_matrix: List[List[float]]
     reconstruction_error: float | None = None
+    runtime_ms: float

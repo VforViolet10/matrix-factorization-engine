@@ -1,3 +1,5 @@
+import time
+
 import numpy as np
 from fastapi import APIRouter, HTTPException
 
@@ -40,9 +42,13 @@ def factorize(request: FactorizationRequest):
             **kwargs,
         )
 
+        start_time = time.perf_counter()
+
         engine.fit(matrix)
 
         reconstructed = engine.reconstruct()
+
+        runtime_ms = (time.perf_counter() - start_time) * 1000
 
         reconstruction_error = float(
             np.linalg.norm(matrix - reconstructed)
@@ -50,9 +56,12 @@ def factorize(request: FactorizationRequest):
 
         return FactorizationResponse(
             method=engine.method,
+            matrix_shape=list(matrix.shape),
+            n_components=request.n_components,
             input_matrix=matrix.tolist(),
             reconstructed_matrix=np.asarray(reconstructed).tolist(),
             reconstruction_error=reconstruction_error,
+            runtime_ms=runtime_ms,
         )
 
     except Exception as exc:

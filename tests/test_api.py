@@ -58,10 +58,13 @@ def test_svd_factorization():
     data = response.json()
 
     assert data["method"] == "svd"
+    assert data["matrix_shape"] == [4, 4]
+    assert data["n_components"] == 2
     assert data["input_matrix"] == payload["matrix"]
     assert len(data["reconstructed_matrix"]) == 4
     assert len(data["reconstructed_matrix"][0]) == 4
     assert data["reconstruction_error"] >= 0
+    assert data["runtime_ms"] >= 0
 
 
 def test_invalid_matrix():
