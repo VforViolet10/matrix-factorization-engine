@@ -27,3 +27,4 @@ data/movielens/
 benchmarks/scalability/results/*.csv
 benchmarks/scalability/results/*.png
 benchmarks/scalability/plots/*.png
+venv_backend/
