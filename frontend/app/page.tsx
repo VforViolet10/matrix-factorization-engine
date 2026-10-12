@@ -1,11 +1,12 @@
+
 "use client";
 
 import { useState } from "react";
-
 import FactorizationPanel from "./components/FactorizationPanel";
 import RecommendationSystem from "./components/RecommendationSystem";
 import ImageCompression from "./components/ImageCompression";
 import RecommendationEvaluation from "./components/RecommendationEvaluation";
+import ThemeToggle from "./components/ThemeToggle";
 
 type Application =
   | "factorization"
@@ -15,32 +16,38 @@ type Application =
 
 const APPLICATIONS: {
   id: Application;
+  number: string;
   label: string;
   description: string;
+  symbol: string;
 }[] = [
   {
     id: "factorization",
+    number: "01",
     label: "Factorization",
-    description:
-      "Explore matrix decomposition methods.",
+    description: "Explore matrix decomposition methods.",
+    symbol: "◈",
   },
   {
     id: "recommendations",
+    number: "02",
     label: "Recommendations",
-    description:
-      "Generate recommendations using matrix factorization.",
+    description: "Discover latent patterns and predictions.",
+    symbol: "✳",
   },
   {
     id: "compression",
+    number: "03",
     label: "Image Compression",
-    description:
-      "Compress images using low-rank SVD.",
+    description: "Compress images using low-rank SVD.",
+    symbol: "▧",
   },
   {
     id: "evaluation",
+    number: "04",
     label: "Evaluation",
-    description:
-      "Evaluate recommendation predictions.",
+    description: "Measure recommendation performance.",
+    symbol: "⌁",
   },
 ];
 
@@ -49,120 +56,160 @@ export default function Home() {
     useState<Application>("factorization");
 
   return (
-    <main className="min-h-screen bg-zinc-950 text-white">
-      <div className="mx-auto max-w-7xl px-6 py-10 lg:px-8 lg:py-14">
-        {/* Header */}
-        <header className="mb-10">
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-zinc-500">
-            Linear Algebra · Data Science · Research
-          </p>
+    <main className="app-shell">
+      <div className="app-container">
+        <header className="topbar">
+          <a className="brand" href="#" aria-label="Matrix Factorization Engine home">
+            <span className="brand-mark">M<span>×</span></span>
+            <span className="brand-name">
+              MATRIX<span>LAB</span>
+            </span>
+          </a>
 
-          <h1 className="mt-3 text-4xl font-bold tracking-tight sm:text-5xl">
-            Matrix Factorization Engine
-          </h1>
-
-          <p className="mt-5 max-w-3xl text-lg leading-8 text-zinc-400">
-            An interactive platform for matrix
-            decomposition, recommendation systems,
-            image compression, and quantitative
-            evaluation.
-          </p>
+          <div className="topbar-right">
+            <span className="status-pill">
+              <span className="status-dot" />
+              Research workspace
+            </span>
+            <ThemeToggle />
+          </div>
         </header>
 
-        {/* Application Navigation */}
-        <nav
-          aria-label="Applications"
-          className="mb-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4"
-        >
-          {APPLICATIONS.map((application) => {
-            const isActive =
-              activeApplication ===
-              application.id;
+        <section className="hero">
+          <div className="hero-copy">
+            <div className="eyebrow">
+              <span className="eyebrow-line" />
+              LINEAR ALGEBRA · DATA SCIENCE · AI
+            </div>
 
-            return (
-              <button
-                key={application.id}
-                type="button"
-                onClick={() =>
-                  setActiveApplication(
-                    application.id,
-                  )
-                }
-                className={`rounded-2xl border p-5 text-left transition ${
-                  isActive
-                    ? "border-white bg-white text-zinc-950"
-                    : "border-zinc-800 bg-zinc-900 text-white hover:border-zinc-600"
-                }`}
-              >
-                <p className="font-semibold">
-                  {application.label}
-                </p>
+            <h1>
+              Make sense of
+              <br />
+              <span className="gradient-text">the underlying</span>
+              <br />
+              structure.
+            </h1>
 
-                <p
-                  className={`mt-2 text-sm leading-6 ${
-                    isActive
-                      ? "text-zinc-600"
-                      : "text-zinc-500"
+            <p className="hero-description">
+              An interactive research workspace for matrix
+              decomposition, recommendation systems, image
+              compression, and quantitative evaluation.
+            </p>
+
+            <div className="hero-meta">
+              <span>Numerical methods</span>
+              <span className="meta-separator">✳</span>
+              <span>Low-rank modeling</span>
+              <span className="meta-separator">✳</span>
+              <span>Exploratory analysis</span>
+            </div>
+          </div>
+
+          <div className="math-art" aria-hidden="true">
+            <div className="math-orbit orbit-one" />
+            <div className="math-orbit orbit-two" />
+            <div className="math-grid">
+              {Array.from({ length: 25 }, (_, i) => (
+                <span
+                  key={i}
+                  className={`math-cell cell-${(i * 7 + 3) % 5}`}
+                />
+              ))}
+            </div>
+            <div className="math-symbol symbol-one">U</div>
+            <div className="math-symbol symbol-two">Σ</div>
+            <div className="math-symbol symbol-three">Vᵀ</div>
+            <div className="math-caption">A = UΣVᵀ</div>
+          </div>
+        </section>
+
+        <section className="workspace-section">
+          <div className="section-heading">
+            <div>
+              <p className="section-kicker">YOUR TOOLKIT</p>
+              <h2>Research workspace</h2>
+              <p className="section-description">
+                Choose a module to begin your exploration.
+              </p>
+            </div>
+            <span className="module-count">04 MODULES</span>
+          </div>
+
+          <nav className="application-grid" aria-label="Applications">
+            {APPLICATIONS.map((application) => {
+              const isActive =
+                activeApplication === application.id;
+
+              return (
+                <button
+                  key={application.id}
+                  type="button"
+                  aria-pressed={isActive}
+                  onClick={() =>
+                    setActiveApplication(application.id)
+                  }
+                  className={`application-card accent-${application.id} ${
+                    isActive ? "is-active" : ""
                   }`}
                 >
-                  {application.description}
-                </p>
-              </button>
-            );
-          })}
-        </nav>
+                  <div className="application-card-top">
+                    <span className="application-symbol">
+                      {application.symbol}
+                    </span>
+                    <span className="application-number">
+                      {application.number}
+                    </span>
+                  </div>
 
-        {/* Active Application */}
-        <section>
-          {activeApplication ===
-            "factorization" && (
-            <FactorizationPanel />
-          )}
+                  <span className="application-title">
+                    {application.label}
+                  </span>
 
-          {activeApplication ===
-            "recommendations" && (
-            <RecommendationSystem />
-          )}
+                  <span className="application-description">
+                    {application.description}
+                  </span>
 
-          {activeApplication ===
-            "compression" && (
-            <ImageCompression />
-          )}
+                  <span className="application-action">
+                    {isActive ? "Currently selected" : "Open module"}
+                    <span aria-hidden="true"> ↗</span>
+                  </span>
+                </button>
+              );
+            })}
+          </nav>
 
-          {activeApplication ===
-            "evaluation" && (
-            <RecommendationEvaluation />
-          )}
+          <div className="active-module-heading">
+            <div className="active-module-indicator" />
+            <span>ACTIVE MODULE</span>
+            <span className="active-module-divider" />
+            <strong>
+              {APPLICATIONS.find(
+                (item) => item.id === activeApplication
+              )?.label}
+            </strong>
+          </div>
+
+          <section className="module-panel">
+            {activeApplication === "factorization" && (
+              <FactorizationPanel />
+            )}
+            {activeApplication === "recommendations" && (
+              <RecommendationSystem />
+            )}
+            {activeApplication === "compression" && (
+              <ImageCompression />
+            )}
+            {activeApplication === "evaluation" && (
+              <RecommendationEvaluation />
+            )}
+          </section>
         </section>
+
+        <footer className="app-footer">
+          <span>Matrix Factorization Engine</span>
+          <span>Built for mathematical exploration.</span>
+        </footer>
       </div>
     </main>
-  );
-}
-
-function ComingSoon({
-  title,
-  description,
-}: {
-  title: string;
-  description: string;
-}) {
-  return (
-    <div className="rounded-2xl border border-zinc-800 bg-zinc-900 p-8">
-      <p className="text-sm font-semibold uppercase tracking-[0.15em] text-zinc-500">
-        Application
-      </p>
-
-      <h2 className="mt-3 text-2xl font-bold">
-        {title}
-      </h2>
-
-      <p className="mt-3 max-w-2xl leading-7 text-zinc-400">
-        {description}
-      </p>
-
-      <div className="mt-6 inline-flex rounded-lg border border-zinc-700 px-4 py-2 text-sm text-zinc-400">
-        Integration coming next
-      </div>
-    </div>
   );
 }
