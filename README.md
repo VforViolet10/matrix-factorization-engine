@@ -1,6 +1,6 @@
 # Matrix Factorization Engine
 
-### 🚀 [Matrix Factorization Engine](https://matrix-factorization-engine-601x8yb4s-violet26.vercel.app/)
+### 🚀 [Matrix Factorization Engine](https://matrix-factorization-engine.vercel.app/)
 
 ### 📚 [API Documentation](https://matrix-factorization-engine-1.onrender.com/docs)
 
